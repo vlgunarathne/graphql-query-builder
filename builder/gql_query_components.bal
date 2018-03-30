@@ -10,7 +10,7 @@ const string GQL_SEARCH = "search(){}";
 // GraphQL objects
 public const string OBJECT_REPOSITORY = "repository(){}";
 public const string OBJECT_PROJECTS = "projects(){}";
-public const string OBJECT_PAGE_INFO = "pageInfo{hasNextPage,hasPreviousPage,startCursor,endCursor}";
+public const string OBJECT_PAGE_INFO = "pageInfo{}";
 public const string OBJECT_CREATOR = "creator{login,resourcePath,url,avatarUrl}";
 public const string OBJECT_REPOSITORY_OWNER = "owner{id,projectsResourcePath,projectsUrl,viewerCanCreateProjects,__typename}";
 
@@ -29,3 +29,14 @@ public const string GQL_ARGUMENT_AFTER = "after";
 public const string GQL_ARGUMENT_OWNER = "owner";
 public const string GQL_ARGUMENT_NAME = "name";
 
+// GraphQL Fields
+public const string ID = "id";
+public const string PROJECTS_RESOURCE_PATH = "projectsResourcePath";
+public const string PROJECTS_URL = "projectsUrl";
+public const string VIEWER_CAN_CREATE_PROJECTS = "viewerCanCreateProjects";
+
+// --PageInfo fields
+public const string PAGEINFO_HAS_NEXT_PAGE = "hasNextPage";
+public const string PAGEINFO_HAS_PREVIOUS_PAGE = "hasPreviousPage";
+public const string PAGEINFO_END_CURSOR = "endCursor";
+public const string PAGEINFO_START_CURSOR = "startCursor";

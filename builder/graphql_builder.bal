@@ -93,6 +93,22 @@ public function <GQLBuilder gqlBuilder> addArgument (string argumentName, string
     return gqlBuilder;
 }
 
+@Description {value: "Add a set of fields to the added object"}
+@Param {value: "fields: Array of fields"}
+@Return {value: "GQLBuilder: A GQLBuilder instance"}
+public function <GQLBuilder gqlBuilder> addFields (string[] fields) returns GQLBuilder {
+    string stringQuery = gqlBuilder.gqlQuery;
+    int indexStep = gqlBuilder.indexStepNested;
+    int indexOfFieldEnd = stringQuery.lastIndexOf("}");
+    string partOne = stringQuery.subString(0, indexOfFieldEnd - indexStep);
+    string partTwo = stringQuery.subString(indexOfFieldEnd - indexStep, stringQuery.length());
+    foreach field in fields {
+        partOne = partOne + field + ",";
+    }
+    gqlBuilder.gqlQuery = partOne + partTwo;
+
+    return gqlBuilder;
+}
 
 @Description {value: "Select the nested level in query, to add an object to that level"}
 @Param {value: "level: Integral value of the level"}

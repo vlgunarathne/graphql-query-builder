@@ -17,19 +17,21 @@ public function main (string[] args) {
     builder:GQLBuilder gqlBuilder = {};
     string sQuery = gqlBuilder
                     .setQuery()
-                    .addVariable("owner", builder:GQL_DATATYPE_STRING)
-                    .addVariable("repository", builder:GQL_DATATYPE_STRING)
-                    .addVariable("states", builder:GQL_DATATYPE_PROJECT_STATES)
-                    .addVariable("recordCount", builder:GQL_DATATYPE_INT)
+                        .addVariable("owner", builder:GQL_DATATYPE_STRING)
+                        .addVariable("repository", builder:GQL_DATATYPE_STRING)
+                        .addVariable("states", builder:GQL_DATATYPE_PROJECT_STATES)
+                        .addVariable("recordCount", builder:GQL_DATATYPE_INT)
                     .addObject(builder:OBJECT_REPOSITORY)
-                    .addArgument(builder:GQL_ARGUMENT_OWNER, "owner")
-                    .addArgument(builder:GQL_ARGUMENT_NAME, "repository")
+                        .addArgument(builder:GQL_ARGUMENT_OWNER, "owner")
+                        .addArgument(builder:GQL_ARGUMENT_NAME, "repository")
                     .addNestedObject(builder:OBJECT_PROJECTS)
-                    .addArgument(builder:GQL_ARGUMENT_FIRST, "recordCount")
-                    .addArgument(builder:GQL_ARGUMENT_STATES, "states")
+                        .addArgument(builder:GQL_ARGUMENT_FIRST, "recordCount")
+                        .addArgument(builder:GQL_ARGUMENT_STATES, "states")
                     .addNestedObject(builder:OBJECT_PAGE_INFO)
+                        .addFields([builder:PAGEINFO_HAS_NEXT_PAGE, builder:PAGEINFO_END_CURSOR])
                     .addObject(builder:NODES_REPOSITORY_PROJECT)
                     .build();
+    io:println(sQuery);
     string stringQuery = string `{"variables":{"owner":"vlgunarathne","repository":"ProLAd-ExpertSystem","states":"OPEN","recordCount":1}, "query":"{{sQuery}}"}`;
     json jsonQuery =? util:parseJson(stringQuery);
     req.setJsonPayload(jsonQuery);
